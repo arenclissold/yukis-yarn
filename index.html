@@ -1,0 +1,23 @@
+---
+layout: default
+---
+{% if site.posts.size > 0 %}
+<ul class="post-list">
+  {% for post in site.posts %}
+  <li class="post-list-item">
+    <h2 class="post-list-title">
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </h2>
+    <time class="post-list-date" datetime="{{ post.date | date_to_xmlschema }}">
+      {{ post.date | date: "%B %d, %Y" }}
+    </time>
+    {% if post.excerpt %}
+    <p class="post-list-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="empty-state">No posts yet. Add a markdown file to the _posts folder to get started.</p>
+{% endif %}
+
